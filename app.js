@@ -10,15 +10,15 @@ app.use(bodyParser.json())
 var conversation_id = "";
 var w_conversation = watson.conversation({
     url: 'https://gateway.watsonplatform.net/conversation/api',
-    username: process.env.CONVERSATION_USERNAME || 'dc4fb3b5-19f7-4c62-b688-d5d2617a63ed',
-    password: process.env.CONVERSATION_PASSWORD || 'x8RQu6BOwAea',
+    username: process.env.CONVERSATION_USERNAME || 'username',
+    password: process.env.CONVERSATION_PASSWORD || 'password',
     version: 'v1',
     version_date: '2016-07-11'
 });
-var workspace = process.env.WORKSPACE_ID || 'workspaceId';
+var workspace = process.env.WORKSPACE_ID || '90b0f8cf-f273-4257-86e8-d67d77cdc87c';
 
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'EAAbOPZAbOBMIBALsynazpwxHT3TnluAzNIlT0LJAXf8iFTBhApQjlBlrQNJXtZCL4tS6LyOZAA976HGPyy9KQ1XSyQwAnjPxZCQhBVq9sZBCZARqMZBKgQp1kHPD8bBCLvCuoFjPktGsUY2CuX6PFRt18bAiWT39CMkcb0ZA6iHSIwZDZD') {
+    if (req.query['hub.verify_token'] === 'EAAadSp7IZCZAEBAMnCsPYG0cxPx7mJ5QPiHIOsC8HKVFAqTSeIdzGRe0qwACC20QtKIo54BXnQW7ATxtSA4WlqZAqgZAZCOSUl8ecWZA1QIZAiOJZAoN0uGTzZCKiGWKlWHLrl7oHkStwIsZAZAmNyB1XMtdIyjcmvHrWQ80cqR8fSXEAZDZD') {
         res.send(req.query['hub.challenge']);
     }
     res.send('Erro de validação no token.');
@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
 		}
 
 		var payload = {
-			workspace_id: "90b0f8cf-f273-4257-86e8-d67d77cdc87c"
+			workspace_id: workspace
 		};
 
 		if (params) {
@@ -102,7 +102,7 @@ function sendMessage(sender, text_) {
     });
 };
 
-var token = "EAAbOPZAbOBMIBALsynazpwxHT3TnluAzNIlT0LJAXf8iFTBhApQjlBlrQNJXtZCL4tS6LyOZAA976HGPyy9KQ1XSyQwAnjPxZCQhBVq9sZBCZARqMZBKgQp1kHPD8bBCLvCuoFjPktGsUY2CuX6PFRt18bAiWT39CMkcb0ZA6iHSIwZDZD";
+var token = "EAAadSp7IZCZAEBAMnCsPYG0cxPx7mJ5QPiHIOsC8HKVFAqTSeIdzGRe0qwACC20QtKIo54BXnQW7ATxtSA4WlqZAqgZAZCOSUl8ecWZA1QIZAiOJZAoN0uGTzZCKiGWKlWHLrl7oHkStwIsZAZAmNyB1XMtdIyjcmvHrWQ80cqR8fSXEAZDZD";
 var host = (process.env.VCAP_APP_HOST || 'localhost');
 var port = (process.env.VCAP_APP_PORT || 3000);
-app.listen(port, host);
+app.listen(port, host)
