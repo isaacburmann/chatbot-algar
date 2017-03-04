@@ -10,15 +10,16 @@ app.use(bodyParser.json())
 var conversation_id = "";
 var w_conversation = watson.conversation({
     url: 'https://gateway.watsonplatform.net/conversation/api',
-    username: process.env.CONVERSATION_USERNAME || 'username',
-    password: process.env.CONVERSATION_PASSWORD || 'password',
+    username: process.env.CONVERSATION_USERNAME || 'dc4fb3b5-19f7-4c62-b688-d5d2617a63ed',
+    password: process.env.CONVERSATION_PASSWORD || 'x8RQu6BOwAea',
     version: 'v1',
     version_date: '2016-07-11'
 });
 var workspace = process.env.WORKSPACE_ID || '90b0f8cf-f273-4257-86e8-d67d77cdc87c';
 
+
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'EAAadSp7IZCZAEBAMnCsPYG0cxPx7mJ5QPiHIOsC8HKVFAqTSeIdzGRe0qwACC20QtKIo54BXnQW7ATxtSA4WlqZAqgZAZCOSUl8ecWZA1QIZAiOJZAoN0uGTzZCKiGWKlWHLrl7oHkStwIsZAZAmNyB1XMtdIyjcmvHrWQ80cqR8fSXEAZDZD') {
+    if (req.query['hub.verify_token'] === 'ganhaki2017win') {
         res.send(req.query['hub.challenge']);
     }
     res.send('Erro de validação no token.');
